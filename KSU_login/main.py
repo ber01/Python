@@ -1,7 +1,10 @@
 import pkg_resources, pip
 
-id = input('ID : ')
-pwd = input('PWD : ')
+data = list()
+with open('./KSU_login/inputForm') as f:
+    data = f.readlines()
+
+id, pwd = data[0].rstrip(), data[1].rstrip()
 
 package_list = [str(l).split()[0] for l in pkg_resources.working_set]
 
@@ -17,7 +20,7 @@ driver = webdriver.Chrome('./KSU_login/chromedriver')
 # 경성포탈 접속
 driver.get('https://portal.ks.ac.kr')
 
-driver.implicitly_wait(5)
+driver.implicitly_wait(3)
 
 # 설치가 되어 있지 않은 경우
 try:
